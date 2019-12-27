@@ -1,0 +1,22 @@
+<div class="col-md-6 lang-container">
+  <h2 style="margin: auto"> Lang </h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>isoCode</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let lang of langs">
+        <td>{{lang.name}}</td>
+        <td>{{lang.isoCode}}</td>
+        <td><button class="btn btn-success" (click)="deleteLang(lang)"> Delete</button>
+          <button class="btn btn-success" (click)="editLang(lang)" style="margin-left: 20px;"> Edit</button></td>
+      </tr>
+    </tbody>
+  </table>
+  <!-- style="width:100px"  -->
+  <button class="btn btn-danger" style="margin-bottom: 10px;"  (click)="addLang()"> Add Lang</button>
+  <button class="btn btn-danger" (click)="home()">Home</button>
+</div>

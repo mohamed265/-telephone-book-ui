@@ -1,0 +1,19 @@
+<div class="col-md-6 user-container">
+  <h2 class="text-center">Add User</h2>
+  <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input type="text" formControlName="name" placeholder="name" name="name" class="form-control" id="name">
+    </div>
+
+    <div class="form-group">
+      <label for="isoCode">Iso Code:</label>
+      <input type="isoCode" formControlName="isoCode" placeholder="isoCode" name="isoCode" class="form-control"
+        id="isoCode">
+    </div>
+
+    <button class="btn btn-success">Add</button>
+
+    <button class="btn btn-danger" (click)="back()">Back</button>
+  </form>
+</div>

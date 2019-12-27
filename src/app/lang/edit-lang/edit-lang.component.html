@@ -1,0 +1,19 @@
+<div class="col-md-6 user-container">
+  <h2 class="text-center">Edit Lang</h2>
+  <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="name">Name :</label>
+      <input type="text" formControlName="name" placeholder="name" name="name" class="form-control" id="name">
+    </div>
+
+    <div class="form-group">
+      <label for="isoCode">Iso Code:</label>
+      <input formControlName="isoCode" placeholder="Iso Code" name="isoCode" class="form-control" id="isoCode"
+        readonly="true">
+    </div>
+
+    <button class="btn btn-success">Update</button>
+
+    <button class="btn btn-danger" (click)="back()">Back</button>
+  </form>
+</div>

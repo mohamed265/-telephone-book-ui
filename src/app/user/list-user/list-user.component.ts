@@ -1,7 +1,7 @@
-import { Component, OnInit , Inject} from '@angular/core';
-import {Router} from "@angular/router";
-import {User} from "../../model/user.model";
-import {ApiService} from "../../service/api.service";
+import { Component, OnInit, Inject } from '@angular/core';
+import { Router } from "@angular/router";
+import { User } from "../../model/user.model";
+import { ApiService } from "../../service/api.service";
 
 @Component({
   selector: 'app-list-user',
@@ -15,19 +15,19 @@ export class ListUserComponent implements OnInit {
   constructor(private router: Router, private apiService: ApiService) { }
 
   ngOnInit() {
-    if(!window.localStorage.getItem('token')) {
+    if (!window.localStorage.getItem('token')) {
       this.router.navigate(['login']);
       return;
     }
     this.apiService.getUsers()
-      .subscribe( data => {
+      .subscribe(data => {
         this.users = data.result;
       });
   }
 
-  deleteUser(user: User): void {
+  deleteUser(user): void {
     this.apiService.deleteUser(user.id)
-      .subscribe( data => {
+      .subscribe(data => {
         this.users = this.users.filter(u => u !== user);
       })
   };
