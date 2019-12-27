@@ -20,4 +20,8 @@ export class HomeComponent implements OnInit {
   goToLangs(): void {
     this.router.navigate(['list-lang']);
   };
+
+  goToGovernorates(): void {
+    this.router.navigate(['list-governorate']);
+  };
 }

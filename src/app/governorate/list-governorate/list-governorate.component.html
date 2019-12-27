@@ -1,0 +1,26 @@
+<div class="col-md-6 lang-container">
+  <h2 style="margin: auto"> Governorate </h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>name</th>
+        <th>AR Value</th>
+        <th>EN Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let governorate of governorates">
+        <td>{{governorate.id}}</td>
+        <td>{{governorate.name}}</td>
+        <td>{{governorate.arValue}}</td>
+        <td>{{governorate.enValue}}</td>
+        <td><button class="btn btn-success" (click)="deleteGovernorate(governorate)"> Delete</button>
+          <button class="btn btn-success" (click)="editGovernorate(governorate)" style="margin-left: 20px;"> Edit</button></td>
+      </tr>
+    </tbody>
+  </table>
+  <!-- style="width:100px"  -->
+  <button class="btn btn-danger" style="margin-bottom: 10px;"  (click)="addGovernorate()"> Add Governorate</button>
+  <button class="btn btn-danger" (click)="home()">Home</button>
+</div>

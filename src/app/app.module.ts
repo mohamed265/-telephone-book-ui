@@ -11,6 +11,10 @@ import { ListLangComponent } from './lang/list-lang/list-lang.component';
 import { AddLangComponent } from './lang/add-lang/add-lang.component';
 import { EditLangComponent } from './lang/edit-lang/edit-lang.component';
 
+import { ListGovernorateComponent } from './governorate/list-governorate/list-governorate.component';
+import { AddGovernorateComponent } from './governorate/add-governorate/add-governorate.component';
+import { EditGovernorateComponent } from './governorate/edit-governorate/edit-governorate.component';
+
 import {routing} from "./app.routing";
 import {ReactiveFormsModule} from "@angular/forms";
 import {ApiService} from "./service/api.service";
@@ -28,7 +32,13 @@ import { HomeComponent } from './home/home.component';
     EditUserComponent,
     ListLangComponent,
     AddLangComponent,
-    EditLangComponent
+    EditLangComponent,
+    ListLangComponent,
+    AddLangComponent,
+    EditLangComponent,
+    ListGovernorateComponent,
+    AddGovernorateComponent,
+    EditGovernorateComponent
   ],
   imports: [
     BrowserModule,

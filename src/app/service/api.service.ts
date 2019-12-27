@@ -59,7 +59,7 @@ export class ApiService {
 
   ///////////////////////////// governorate
   getGovernorates(): Observable<ApiResponse> {
-    return this.http.get<ApiResponse>(this.baseUrl + 'governorate/');
+    return this.http.get<ApiResponse>(this.baseUrl + 'governorate/local');
   }
 
   getGovernorateById(isoCode: string): Observable<ApiResponse> {
@@ -67,11 +67,33 @@ export class ApiService {
   }
 
   createGovernorate(governorate): Observable<ApiResponse> {
+    governorate.governorateLocals = [
+      {
+        "LKLangIsoCode": "ar",
+        "value": governorate.arValue
+      },
+      {
+        "LKLangIsoCode": "en",
+        "value": governorate.enValue
+      }
+    ];
+
     return this.http.post<ApiResponse>(this.baseUrl + 'governorate/', governorate);
   }
 
   updateGovernorate(governorate): Observable<ApiResponse> {
-    return this.http.patch<ApiResponse>(this.baseUrl + 'governorate/' + governorate.id, governorate);
+    governorate.governorateLocals = [
+      {
+        "LKLangIsoCode": "ar",
+        "value": governorate.arValue
+      },
+      {
+        "LKLangIsoCode": "en",
+        "value": governorate.enValue
+      }
+    ];
+
+    return this.http.patch<ApiResponse>(this.baseUrl + 'governorate/' + governorate.id + "/withLocals", governorate);
   }
 
   deleteGovernorate(id: number): Observable<ApiResponse> {
