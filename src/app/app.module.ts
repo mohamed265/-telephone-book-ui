@@ -23,11 +23,15 @@ import { AddAreaComponent } from "./area/add-area/add-area.component";
 import { ListAreaComponent } from "./area/list-area/list-area.component";
 import { EditAreaComponent } from "./area/edit-area/edit-area.component";
 
-import {routing} from "./app.routing";
-import {ReactiveFormsModule} from "@angular/forms";
-import {ApiService} from "./service/api.service";
-import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
-import {TokenInterceptor} from "./core/interceptor";
+import { AddTagComponent } from "./tag/add-tag/add-tag.component";
+import { ListTagComponent } from "./tag/list-tag/list-tag.component";
+import { EditTagComponent } from "./tag/edit-tag/edit-tag.component";
+
+import { routing } from "./app.routing";
+import { ReactiveFormsModule } from "@angular/forms";
+import { ApiService } from "./service/api.service";
+import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
+import { TokenInterceptor } from "./core/interceptor";
 import { HomeComponent } from './home/home.component';
 
 @NgModule({
@@ -52,7 +56,10 @@ import { HomeComponent } from './home/home.component';
     EditCityComponent,
     ListAreaComponent,
     AddAreaComponent,
-    EditAreaComponent
+    EditAreaComponent,
+    ListTagComponent,
+    AddTagComponent,
+    EditTagComponent
   ],
   imports: [
     BrowserModule,
@@ -60,9 +67,11 @@ import { HomeComponent } from './home/home.component';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [ApiService, {provide: HTTP_INTERCEPTORS,
+  providers: [ApiService, {
+    provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptor,
-    multi : true}],
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -184,4 +184,47 @@ export class ApiService {
   deleteArea(id: number): Observable<ApiResponse> {
     return this.http.delete<ApiResponse>(this.baseUrl + 'area/' + id);
   }
+
+  ///////////////////////////// tag
+  getTags(): Observable<ApiResponse> {
+    return this.http.get<ApiResponse>(this.baseUrl + 'tag/local');
+  }
+
+  getTagById(id: string): Observable<ApiResponse> {
+    return this.http.get<ApiResponse>(this.baseUrl + 'tag/' + id);
+  }
+
+  createTag(tag): Observable<ApiResponse> {
+    tag.tagLocals = [
+      {
+        "LKLangIsoCode": "ar",
+        "value": tag.arValue
+      },
+      {
+        "LKLangIsoCode": "en",
+        "value": tag.enValue
+      }
+    ];
+
+    return this.http.post<ApiResponse>(this.baseUrl + 'tag/', tag);
+  }
+
+  updateTag(tag): Observable<ApiResponse> {
+    tag.tagLocals = [
+      {
+        "LKLangIsoCode": "ar",
+        "value": tag.arValue
+      },
+      {
+        "LKLangIsoCode": "en",
+        "value": tag.enValue
+      }
+    ];
+
+    return this.http.patch<ApiResponse>(this.baseUrl + 'tag/' + tag.id + "/withLocals", tag);
+  }
+
+  deleteTag(id: number): Observable<ApiResponse> {
+    return this.http.delete<ApiResponse>(this.baseUrl + 'tag/' + id);
+  }
 }

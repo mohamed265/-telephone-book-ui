@@ -16,6 +16,9 @@ import { EditCityComponent } from "./city/edit-city/edit-city.component";
 import { AddAreaComponent } from "./area/add-area/add-area.component";
 import { ListAreaComponent } from "./area/list-area/list-area.component";
 import { EditAreaComponent } from "./area/edit-area/edit-area.component";
+import { AddTagComponent } from "./tag/add-tag/add-tag.component";
+import { ListTagComponent } from "./tag/list-tag/list-tag.component";
+import { EditTagComponent } from "./tag/edit-tag/edit-tag.component";
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -35,6 +38,9 @@ const routes: Routes = [
   { path: 'add-area', component: AddAreaComponent },
   { path: 'list-area', component: ListAreaComponent },
   { path: 'edit-area', component: EditAreaComponent },
+  { path: 'add-tag', component: AddTagComponent },
+  { path: 'list-tag', component: ListTagComponent },
+  { path: 'edit-tag', component: EditTagComponent },
   { path: '', component: LoginComponent }
 ];
 

@@ -32,4 +32,8 @@ export class HomeComponent implements OnInit {
   goToAreas(): void {
     this.router.navigate(['list-area']);
   };
+
+  goToTags(): void {
+    this.router.navigate(['list-tag']);
+  };
 }

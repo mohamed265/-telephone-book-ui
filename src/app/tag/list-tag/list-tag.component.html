@@ -1,0 +1,26 @@
+<div class="col-md-6 lang-container">
+  <h2 style="margin: auto"> Tag </h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>name</th>
+        <th>AR Value</th>
+        <th>EN Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let tag of tags">
+        <td>{{tag.id}}</td>
+        <td>{{tag.name}}</td>
+        <td>{{tag.arValue}}</td>
+        <td>{{tag.enValue}}</td>
+        <td><button class="btn btn-success" (click)="deleteTag(tag)"> Delete</button>
+          <button class="btn btn-success" (click)="editTag(tag)" style="margin-left: 20px;"> Edit</button></td>
+      </tr>
+    </tbody>
+  </table>
+  <!-- style="width:100px"  -->
+  <button class="btn btn-danger" style="margin-bottom: 10px;"  (click)="addTag()"> Add Tag</button>
+  <button class="btn btn-danger" (click)="home()">Home</button>
+</div>
