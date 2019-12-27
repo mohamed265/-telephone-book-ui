@@ -99,4 +99,46 @@ export class ApiService {
   deleteGovernorate(id: number): Observable<ApiResponse> {
     return this.http.delete<ApiResponse>(this.baseUrl + 'governorate/' + id);
   }
+  ///////////////////////////// city
+  getCitys(): Observable<ApiResponse> {
+    return this.http.get<ApiResponse>(this.baseUrl + 'city/local');
+  }
+
+  getCityById(isoCode: string): Observable<ApiResponse> {
+    return this.http.get<ApiResponse>(this.baseUrl + 'city/' + isoCode);
+  }
+
+  createCity(city): Observable<ApiResponse> {
+    city.cityLocals = [
+      {
+        "LKLangIsoCode": "ar",
+        "value": city.arValue
+      },
+      {
+        "LKLangIsoCode": "en",
+        "value": city.enValue
+      }
+    ];
+
+    return this.http.post<ApiResponse>(this.baseUrl + 'city/', city);
+  }
+
+  updateCity(city): Observable<ApiResponse> {
+    city.cityLocals = [
+      {
+        "LKLangIsoCode": "ar",
+        "value": city.arValue
+      },
+      {
+        "LKLangIsoCode": "en",
+        "value": city.enValue
+      }
+    ];
+
+    return this.http.patch<ApiResponse>(this.baseUrl + 'city/' + city.id + "/withLocals", city);
+  }
+
+  deleteCity(id: number): Observable<ApiResponse> {
+    return this.http.delete<ApiResponse>(this.baseUrl + 'city/' + id);
+  }
 }

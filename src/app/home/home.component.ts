@@ -24,4 +24,8 @@ export class HomeComponent implements OnInit {
   goToGovernorates(): void {
     this.router.navigate(['list-governorate']);
   };
+
+  goToCities(): void {
+    this.router.navigate(['list-city']);
+  };
 }

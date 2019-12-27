@@ -1,0 +1,31 @@
+<div class="col-md-6 user-container">
+  <h2 class="text-center">Edit City</h2>
+  <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+ 
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input type="text" formControlName="name" placeholder="name" name="name" class="form-control" id="name">
+    </div>
+
+    <div class="form-group">
+      <label for="arValue">Arabic Value:</label>
+      <input type="text" formControlName="arValue" placeholder="arValue" name="arValue" class="form-control" id="arValue">
+    </div>
+
+    <div class="form-group">
+      <label for="enValue">English Value:</label>
+      <input type="text" formControlName="enValue" placeholder="enValue" name="enValue" class="form-control" id="enValue">
+    </div>
+
+    <div class="form-group">
+      <label for="LKGovernorateId">Governorate:</label>
+      <select formControlName="LKGovernorateId" name="LKGovernorateId" class="form-control" id="LKGovernorateId">
+        <option disabled>Please Select</option>
+      </select>
+    </div>
+
+    <button class="btn btn-success">Update</button>
+
+    <button class="btn btn-danger" (click)="back()">Back</button>
+  </form>
+</div>

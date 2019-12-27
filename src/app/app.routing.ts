@@ -10,6 +10,9 @@ import { EditLangComponent } from "./lang/edit-lang/edit-lang.component";
 import { AddGovernorateComponent } from "./governorate/add-governorate/add-governorate.component";
 import { ListGovernorateComponent } from "./governorate/list-governorate/list-governorate.component";
 import { EditGovernorateComponent } from "./governorate/edit-governorate/edit-governorate.component";
+import { AddCityComponent } from "./city/add-city/add-city.component";
+import { ListCityComponent } from "./city/list-city/list-city.component";
+import { EditCityComponent } from "./city/edit-city/edit-city.component";
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -23,6 +26,9 @@ const routes: Routes = [
   { path: 'add-governorate', component: AddGovernorateComponent },
   { path: 'list-governorate', component: ListGovernorateComponent },
   { path: 'edit-governorate', component: EditGovernorateComponent },
+  { path: 'add-city', component: AddCityComponent },
+  { path: 'list-city', component: ListCityComponent },
+  { path: 'edit-city', component: EditCityComponent },
   { path: '', component: LoginComponent }
 ];
 

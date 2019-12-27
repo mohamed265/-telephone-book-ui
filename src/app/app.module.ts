@@ -15,6 +15,10 @@ import { ListGovernorateComponent } from './governorate/list-governorate/list-go
 import { AddGovernorateComponent } from './governorate/add-governorate/add-governorate.component';
 import { EditGovernorateComponent } from './governorate/edit-governorate/edit-governorate.component';
 
+import { ListCityComponent } from './city/list-city/list-city.component';
+import { AddCityComponent } from './city/add-city/add-city.component';
+import { EditCityComponent } from './city/edit-city/edit-city.component';
+
 import {routing} from "./app.routing";
 import {ReactiveFormsModule} from "@angular/forms";
 import {ApiService} from "./service/api.service";
@@ -38,7 +42,10 @@ import { HomeComponent } from './home/home.component';
     EditLangComponent,
     ListGovernorateComponent,
     AddGovernorateComponent,
-    EditGovernorateComponent
+    EditGovernorateComponent,
+    ListCityComponent,
+    AddCityComponent,
+    EditCityComponent
   ],
   imports: [
     BrowserModule,
