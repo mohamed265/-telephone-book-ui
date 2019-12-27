@@ -28,4 +28,8 @@ export class HomeComponent implements OnInit {
   goToCities(): void {
     this.router.navigate(['list-city']);
   };
+
+  goToAreas(): void {
+    this.router.navigate(['list-area']);
+  };
 }

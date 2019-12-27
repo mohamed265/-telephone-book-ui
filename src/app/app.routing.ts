@@ -13,6 +13,9 @@ import { EditGovernorateComponent } from "./governorate/edit-governorate/edit-go
 import { AddCityComponent } from "./city/add-city/add-city.component";
 import { ListCityComponent } from "./city/list-city/list-city.component";
 import { EditCityComponent } from "./city/edit-city/edit-city.component";
+import { AddAreaComponent } from "./area/add-area/add-area.component";
+import { ListAreaComponent } from "./area/list-area/list-area.component";
+import { EditAreaComponent } from "./area/edit-area/edit-area.component";
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -29,6 +32,9 @@ const routes: Routes = [
   { path: 'add-city', component: AddCityComponent },
   { path: 'list-city', component: ListCityComponent },
   { path: 'edit-city', component: EditCityComponent },
+  { path: 'add-area', component: AddAreaComponent },
+  { path: 'list-area', component: ListAreaComponent },
+  { path: 'edit-area', component: EditAreaComponent },
   { path: '', component: LoginComponent }
 ];
 

@@ -104,8 +104,8 @@ export class ApiService {
     return this.http.get<ApiResponse>(this.baseUrl + 'city/local');
   }
 
-  getCityById(isoCode: string): Observable<ApiResponse> {
-    return this.http.get<ApiResponse>(this.baseUrl + 'city/' + isoCode);
+  getCityById(id: string): Observable<ApiResponse> {
+    return this.http.get<ApiResponse>(this.baseUrl + 'city/' + id);
   }
 
   createCity(city): Observable<ApiResponse> {
@@ -140,5 +140,48 @@ export class ApiService {
 
   deleteCity(id: number): Observable<ApiResponse> {
     return this.http.delete<ApiResponse>(this.baseUrl + 'city/' + id);
+  }
+
+  ///////////////////////////// area
+  getAreas(): Observable<ApiResponse> {
+    return this.http.get<ApiResponse>(this.baseUrl + 'area/local');
+  }
+
+  getAreaById(id: string): Observable<ApiResponse> {
+    return this.http.get<ApiResponse>(this.baseUrl + 'area/' + id);
+  }
+
+  createArea(area): Observable<ApiResponse> {
+    area.areaLocals = [
+      {
+        "LKLangIsoCode": "ar",
+        "value": area.arValue
+      },
+      {
+        "LKLangIsoCode": "en",
+        "value": area.enValue
+      }
+    ];
+
+    return this.http.post<ApiResponse>(this.baseUrl + 'area/', area);
+  }
+
+  updateArea(area): Observable<ApiResponse> {
+    area.areaLocals = [
+      {
+        "LKLangIsoCode": "ar",
+        "value": area.arValue
+      },
+      {
+        "LKLangIsoCode": "en",
+        "value": area.enValue
+      }
+    ];
+
+    return this.http.patch<ApiResponse>(this.baseUrl + 'area/' + area.id + "/withLocals", area);
+  }
+
+  deleteArea(id: number): Observable<ApiResponse> {
+    return this.http.delete<ApiResponse>(this.baseUrl + 'area/' + id);
   }
 }

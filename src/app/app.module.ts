@@ -19,6 +19,10 @@ import { ListCityComponent } from './city/list-city/list-city.component';
 import { AddCityComponent } from './city/add-city/add-city.component';
 import { EditCityComponent } from './city/edit-city/edit-city.component';
 
+import { AddAreaComponent } from "./area/add-area/add-area.component";
+import { ListAreaComponent } from "./area/list-area/list-area.component";
+import { EditAreaComponent } from "./area/edit-area/edit-area.component";
+
 import {routing} from "./app.routing";
 import {ReactiveFormsModule} from "@angular/forms";
 import {ApiService} from "./service/api.service";
@@ -45,7 +49,10 @@ import { HomeComponent } from './home/home.component';
     EditGovernorateComponent,
     ListCityComponent,
     AddCityComponent,
-    EditCityComponent
+    EditCityComponent,
+    ListAreaComponent,
+    AddAreaComponent,
+    EditAreaComponent
   ],
   imports: [
     BrowserModule,

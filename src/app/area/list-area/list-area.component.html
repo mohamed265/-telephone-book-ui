@@ -1,0 +1,26 @@
+<div class="col-md-6 lang-container">
+  <h2 style="margin: auto"> Area </h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>name</th>
+        <th>AR Value</th>
+        <th>EN Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let area of areas">
+        <td>{{area.id}}</td>
+        <td>{{area.name}}</td>
+        <td>{{area.arValue}}</td>
+        <td>{{area.enValue}}</td>
+        <td><button class="btn btn-success" (click)="deleteArea(area)"> Delete</button>
+          <button class="btn btn-success" (click)="editArea(area)" style="margin-left: 20px;"> Edit</button></td>
+      </tr>
+    </tbody>
+  </table>
+  <!-- style="width:100px"  -->
+  <button class="btn btn-danger" style="margin-bottom: 10px;"  (click)="addArea()"> Add Area</button>
+  <button class="btn btn-danger" (click)="home()">Home</button>
+</div>
