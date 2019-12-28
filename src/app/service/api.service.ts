@@ -227,4 +227,47 @@ export class ApiService {
   deleteTag(id: number): Observable<ApiResponse> {
     return this.http.delete<ApiResponse>(this.baseUrl + 'tag/' + id);
   }
+
+  ///////////////////////////// contact
+  getContacts(): Observable<ApiResponse> {
+    return this.http.get<ApiResponse>(this.baseUrl + 'contact');
+  }
+
+  getContactById(id: string): Observable<ApiResponse> {
+    return this.http.get<ApiResponse>(this.baseUrl + 'contact/' + id);
+  }
+
+  createContact(contact): Observable<ApiResponse> {
+    // contact.contactLocals = [
+    //   {
+    //     "LKLangIsoCode": "ar",
+    //     "value": contact.arValue
+    //   },
+    //   {
+    //     "LKLangIsoCode": "en",
+    //     "value": contact.enValue
+    //   }
+    // ];
+
+    return this.http.post<ApiResponse>(this.baseUrl + 'contact/', contact);
+  }
+
+  updateContact(contact): Observable<ApiResponse> {
+    // contact.contactLocals = [
+    //   {
+    //     "LKLangIsoCode": "ar",
+    //     "value": contact.arValue
+    //   },
+    //   {
+    //     "LKLangIsoCode": "en",
+    //     "value": contact.enValue
+    //   }
+    // ];
+
+    return this.http.patch<ApiResponse>(this.baseUrl + 'contact/' + contact.id , contact);
+  }
+
+  deleteContact(id: number): Observable<ApiResponse> {
+    return this.http.delete<ApiResponse>(this.baseUrl + 'contact/' + id);
+  }
 }

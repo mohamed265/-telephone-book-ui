@@ -19,6 +19,9 @@ import { EditAreaComponent } from "./area/edit-area/edit-area.component";
 import { AddTagComponent } from "./tag/add-tag/add-tag.component";
 import { ListTagComponent } from "./tag/list-tag/list-tag.component";
 import { EditTagComponent } from "./tag/edit-tag/edit-tag.component";
+import { AddContactComponent } from "./contact/add-contact/add-contact.component";
+import { ListContactComponent } from "./contact/list-contact/list-contact.component";
+import { EditContactComponent } from "./contact/edit-contact/edit-contact.component";
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -41,6 +44,9 @@ const routes: Routes = [
   { path: 'add-tag', component: AddTagComponent },
   { path: 'list-tag', component: ListTagComponent },
   { path: 'edit-tag', component: EditTagComponent },
+  { path: 'add-contact', component: AddContactComponent },
+  { path: 'list-contact', component: ListContactComponent },
+  { path: 'edit-contact', component: EditContactComponent },
   { path: '', component: LoginComponent }
 ];
 

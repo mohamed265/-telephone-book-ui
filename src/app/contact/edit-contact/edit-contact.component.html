@@ -1,0 +1,85 @@
+<div class="col-md-6 user-container">
+  <h2 class="text-center">Edit Contact</h2>
+  <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input type="text" formControlName="name" placeholder="name" name="name" class="form-control" id="name">
+    </div>
+
+    <div class="form-group">
+      <label for="arValue">Number:</label>
+      <input type="text" formControlName="number" placeholder="number" name="number" class="form-control" id="number">
+    </div>
+
+    <div class="form-group">
+      <label for="address">Address :</label>
+      <input type="text" formControlName="address" placeholder="address" name="address" class="form-control"
+        id="address">
+    </div>
+
+
+
+    <div class="form-group">
+      <label for="LKGovernorateId">Governorate:</label>
+      <select formControlName="LKGovernorateId" name="LKGovernorateId" class="form-control" id="LKGovernorateId"
+        required>
+        <option disabled>Please Select</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="LKCityId">City:</label>
+      <select formControlName="LKCityId" name="LKCityId" class="form-control" id="LKCityId" required>
+        <option disabled>Please Select</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="LKAreaId">Area:</label>
+      <select formControlName="LKAreaId" name="LKAreaId" class="form-control" id="LKAreaId" required>
+        <option disabled>Please Select</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="tags">Tags:</label>
+      <select name="tags" class="form-control" id="tags" required multiple>
+        <option disabled>Please Select</option>
+      </select>
+      <!-- <select formControlName="tags" name="tags" class="form-control" id="tags" required multiple>
+        <option disabled>Please Select</option>
+      </select> -->
+    </div>
+
+    <div class="form-group">
+      <label for="type">Type:</label>
+      <select formControlName="type" name="type" class="form-control" id="type" required>
+        <option disabled>Please Select</option>
+        <option value="1">Person</option>
+        <option value="2">Organization</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="LKGovernorateId">Image:</label>
+      <div class="container">
+        <input type="file" #clientIconUploader class="vertical-center" (change)="clientIconChangeEvent($event)" />
+        <span *ngIf="clientIcon && clientIcon.length != 0" style="float: right;">
+          <img width="50" height="50" id="preview" src="{{clientIcon}}" alt="Preview">
+          <span (click)="removeClientIcon()" class="close" style="margin-left: 30px">X</span>
+        </span>
+        <span *ngIf="clientIconInvalidText">
+          Image Size Limit is 75kb
+        </span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="map">Location :</label>
+      <div #mapContainer id="map"></div>
+    </div>
+
+    <button class="btn btn-success">Update</button>
+
+    <button class="btn btn-danger" (click)="back()">Back</button>
+  </form>
+</div>

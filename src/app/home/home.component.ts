@@ -36,4 +36,8 @@ export class HomeComponent implements OnInit {
   goToTags(): void {
     this.router.navigate(['list-tag']);
   };
+
+  goToContacts(): void {
+    this.router.navigate(['list-contact']);
+  };
 }
