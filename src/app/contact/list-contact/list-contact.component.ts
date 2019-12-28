@@ -25,10 +25,11 @@ export class ListContactComponent implements OnInit {
   }
 
   deleteContact(contact): void {
-    this.apiService.deleteContact(contact.id)
-      .subscribe(data => {
-        this.contacts = this.contacts.filter(u => u !== contact);
-      })
+    if (confirm('are you sure?'))
+      this.apiService.deleteContact(contact.id)
+        .subscribe(data => {
+          this.contacts = this.contacts.filter(u => u !== contact);
+        })
   };
 
   editContact(contact): void {

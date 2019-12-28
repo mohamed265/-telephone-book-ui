@@ -31,10 +31,11 @@ export class ListGovernorateComponent implements OnInit {
   }
 
   deleteGovernorate(governorate): void {
-    this.apiService.deleteGovernorate(governorate.id)
-      .subscribe(data => {
-        this.governorates = this.governorates.filter(u => u !== governorate);
-      })
+    if (confirm('are you sure?'))
+      this.apiService.deleteGovernorate(governorate.id)
+        .subscribe(data => {
+          this.governorates = this.governorates.filter(u => u !== governorate);
+        })
   };
 
   editGovernorate(governorate): void {

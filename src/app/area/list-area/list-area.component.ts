@@ -31,10 +31,11 @@ export class ListAreaComponent implements OnInit {
   }
 
   deleteArea(area): void {
-    this.apiService.deleteArea(area.id)
-      .subscribe(data => {
-        this.areas = this.areas.filter(u => u !== area);
-      })
+    if (confirm('are you sure?'))
+      this.apiService.deleteArea(area.id)
+        .subscribe(data => {
+          this.areas = this.areas.filter(u => u !== area);
+        })
   };
 
   editArea(area): void {

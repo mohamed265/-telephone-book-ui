@@ -23,35 +23,34 @@
     <div class="form-group">
       <label for="LKGovernorateId">Governorate:</label>
       <select formControlName="LKGovernorateId" name="LKGovernorateId" class="form-control" id="LKGovernorateId"  required>
-        <option disabled>Please Select</option>
+         <option></option>
       </select>
     </div>
 
     <div class="form-group">
       <label for="LKCityId">City:</label>
       <select formControlName="LKCityId" name="LKCityId" class="form-control" id="LKCityId"  required>
-        <option disabled>Please Select</option>
+         <option></option>
       </select>
     </div>
     <div class="form-group">
       <label for="LKAreaId">Area:</label>
       <select formControlName="LKAreaId" name="LKAreaId" class="form-control" id="LKAreaId"  required>
-        <option disabled>Please Select</option>
+         <option></option>
       </select>
     </div>
     <div class="form-group">
       <label for="tags">Tags:</label>
       <select name="tags" class="form-control" id="tags" required multiple>
-        <option disabled>Please Select</option>
+         <option></option>
       </select>
       <!-- <select formControlName="tags" name="tags" class="form-control" id="tags" required multiple>
-        <option disabled>Please Select</option>
+         <option></option>
       </select> -->
     </div>
     <div class="form-group">
       <label for="type">Type:</label>
       <select formControlName="type" name="type" class="form-control" id="type" required>
-        <option disabled>Please Select</option>
         <option value="1">Person</option>
         <option value="2">Organization</option>
       </select>
@@ -75,16 +74,6 @@
       <label for="map">Location :</label>
       <div #mapContainer id="map"></div>
     </div>
-
-    <!-- 
-    <div class="form-group">
-      <label for="LKTagId">Tag:</label>
-      <select formControlName="LKTagId" name="LKTagId" class="form-control" id="LKTagId">
-        <option disabled>Please Select</option>
-      </select>
-    </div> -->
-
-
 
     <button class="btn btn-success">Add</button>
 

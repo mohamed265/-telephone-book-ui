@@ -31,10 +31,11 @@ export class ListCityComponent implements OnInit {
   }
 
   deleteCity(city): void {
-    this.apiService.deleteCity(city.id)
-      .subscribe(data => {
-        this.citys = this.citys.filter(u => u !== city);
-      })
+    if (confirm('are you sure?'))
+      this.apiService.deleteCity(city.id)
+        .subscribe(data => {
+          this.citys = this.citys.filter(u => u !== city);
+        })
   };
 
   editCity(city): void {
