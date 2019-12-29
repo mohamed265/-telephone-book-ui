@@ -52,14 +52,14 @@ export class AddCityComponent implements OnInit {
         debugger;
         if (data['status'] == 201) {
           alert('adding successfully');
+          this.router.navigate(['list-city']);
         } else {
-          alert(data['errors'] ? data['errors'] : data);
+          alert("error");
+          console.log(data);
         }
-        this.router.navigate(['list-city']);
       }, err => {
-        debugger;
-        alert(err['error']['errors'][0].error ? err['error']['errors'][0].error : err);
-        console.log(err)
+        alert("error");
+        console.log(err);
       });
   }
 

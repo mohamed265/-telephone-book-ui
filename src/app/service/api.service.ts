@@ -17,7 +17,7 @@ export class ApiService {
   }
 
   getUsers(): Observable<ApiResponse> {
-    return this.http.get<ApiResponse>(this.baseUrl + 'user/');
+    return this.http.get<ApiResponse>(this.baseUrl + 'user/admins');
   }
 
   getUserById(id: string): Observable<ApiResponse> {
@@ -25,11 +25,13 @@ export class ApiService {
   }
 
   createUser(user): Observable<ApiResponse> {
+    user.isAdmin = true;
     return this.http.post<ApiResponse>(this.baseUrl + 'user/', user);
   }
 
   updateUser(user): Observable<ApiResponse> {
-    return this.http.put<ApiResponse>(this.baseUrl + 'user/' + user.id, user);
+    user.isAdmin = true;
+    return this.http.patch<ApiResponse>(this.baseUrl + 'user/' + user.id, user);
   }
 
   deleteUser(id: string): Observable<ApiResponse> {
@@ -264,7 +266,7 @@ export class ApiService {
     //   }
     // ];
 
-    return this.http.patch<ApiResponse>(this.baseUrl + 'contact/' + contact.id , contact);
+    return this.http.patch<ApiResponse>(this.baseUrl + 'contact/' + contact.id, contact);
   }
 
   deleteContact(id: number): Observable<ApiResponse> {

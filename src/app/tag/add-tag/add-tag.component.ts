@@ -29,7 +29,7 @@ export class AddTagComponent implements OnInit {
         var tags = response['data'];
         tags.forEach(tag => {
           var sel = document.getElementById('LKTagId');
-        
+
           // create new option element
           var opt = document.createElement('option');
 
@@ -56,14 +56,14 @@ export class AddTagComponent implements OnInit {
         debugger;
         if (data['status'] == 201) {
           alert('adding successfully');
+          this.router.navigate(['list-tag']);
         } else {
-          alert(data['errors'] ? data['errors'] : data);
+          alert("error");
+          console.log(data);
         }
-        this.router.navigate(['list-tag']);
       }, err => {
-        debugger;
-        alert(err['error']['errors'][0].error ? err['error']['errors'][0].error : err);
-        console.log(err)
+        alert("error");
+        console.log(err);
       });
   }
 

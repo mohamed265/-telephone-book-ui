@@ -27,17 +27,16 @@ export class AddGovernorateComponent implements OnInit {
     debugger;
     this.apiService.createGovernorate(this.addForm.value)
       .subscribe(data => {
-        debugger;
         if (data['status'] == 201) {
           alert('adding successfully');
+          this.router.navigate(['list-governorate']);
         } else {
-          alert(data['errors'] ? data['errors'] : data);
+          alert("error");
+          console.log(data);
         }
-        this.router.navigate(['list-governorate']);
       }, err => {
-        debugger;
-        alert(err['error']['errors'][0].error ? err['error']['errors'][0].error : err);
-        console.log(err)
+        alert("error");
+        console.log(err);
       });
   }
 

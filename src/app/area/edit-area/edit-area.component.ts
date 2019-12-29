@@ -83,7 +83,7 @@ export class EditAreaComponent implements OnInit {
     var sel = document.getElementById('LKCityId');
     var options = sel['options'];
     obj.LKCityId = options[sel['selectedIndex']].value;
-debugger;
+    debugger;
     this.apiService.updateArea(obj)
       .pipe(first())
       .subscribe(
@@ -92,11 +92,13 @@ debugger;
             alert('area updated successfully.');
             this.router.navigate(['list-area']);
           } else {
-            alert(data['errors'] ? data['errors'] : data);
+            alert("error");
+            console.log(data);
           }
         },
         error => {
-          alert(error);
+          alert("error");
+          console.log(error);
         });
   }
 }

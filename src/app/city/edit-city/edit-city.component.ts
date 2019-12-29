@@ -87,11 +87,13 @@ export class EditCityComponent implements OnInit {
             alert('city updated successfully.');
             this.router.navigate(['list-city']);
           } else {
-            alert(data['errors'] ? data['errors'] : data);
+            alert("error");
+            console.log(data);
           }
         },
         error => {
-          alert(error);
+          alert("error");
+          console.log(error);
         });
   }
 }

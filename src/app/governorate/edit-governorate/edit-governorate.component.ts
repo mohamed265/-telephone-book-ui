@@ -65,11 +65,13 @@ export class EditGovernorateComponent implements OnInit {
             alert('governorate updated successfully.');
             this.router.navigate(['list-governorate']);
           } else {
-            alert(data['errors'] ? data['errors'] : data);
+            alert("error");
+            console.log(data);
           }
         },
         error => {
-          alert(error);
+          alert("error");
+          console.log(error);
         });
   }
 }

@@ -10,7 +10,7 @@ import { ApiService } from "../../service/api.service";
 })
 export class ListUserComponent implements OnInit {
 
-  users: User[];
+  users: any[];
 
   constructor(private router: Router, private apiService: ApiService) { }
 
@@ -20,8 +20,8 @@ export class ListUserComponent implements OnInit {
       return;
     }
     this.apiService.getUsers()
-      .subscribe(data => {
-        this.users = data.result;
+      .subscribe(res => {
+        this.users = res['data'];
       });
   }
 
@@ -40,5 +40,9 @@ export class ListUserComponent implements OnInit {
 
   addUser(): void {
     this.router.navigate(['add-user']);
+  };
+
+  home(): void {
+    this.router.navigate(['home']);
   };
 }

@@ -200,11 +200,13 @@ export class EditContactComponent implements AfterViewInit, OnInit {
             alert('contact updated successfully.');
             this.router.navigate(['list-contact']);
           } else {
-            alert(data['errors'] ? data['errors'] : data);
+            alert("error");
+            console.log(data);
           }
         },
         error => {
-          alert(error);
+          alert("error");
+          console.log(error);
         });
   }
 
