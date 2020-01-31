@@ -9,11 +9,12 @@ export class ApiService {
 
   constructor(private http: HttpClient) { }
 
+  // baseUrl: string = 'http://41.39.101.176:3000/v1/'
   baseUrl: string = 'http://localhost:3000/v1/'
 
   login(loginPayload): Observable<ApiResponse> {
     console.log(loginPayload);
-    return this.http.post<ApiResponse>('http://localhost:3000/v1/token/generate-token', loginPayload);
+    return this.http.post<ApiResponse>(this.baseUrl + 'token/generate-token', loginPayload);
   }
 
   getUsers(): Observable<ApiResponse> {

@@ -85,7 +85,7 @@ export class EditTagComponent implements OnInit {
 
     var sel = document.getElementById('LKTagId');
     var options = sel['options'];
-    obj.LKTagId = options[sel['selectedIndex']].value;
+    obj.LKTagId = sel['selectedIndex'] != -1 ? options[sel['selectedIndex']].value : null;
     debugger;
     this.apiService.updateTag(obj)
       .pipe(first())
