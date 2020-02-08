@@ -32,6 +32,7 @@ export class EditContactComponent implements AfterViewInit, OnInit {
       name: ['', Validators.required],
       number: ['', Validators.required],
       address: ['', Validators.required],
+      description: ['', Validators.required],
       LKGovernorateId: ['', Validators.required],
       LKCityId: ['', Validators.required],
       LKAreaId: ['', Validators.required],
@@ -47,6 +48,7 @@ export class EditContactComponent implements AfterViewInit, OnInit {
         obj['name'] = res['data']['name'];
         obj['number'] = res['data']['number'];
         obj['address'] = res['data']['address'];
+        obj['description'] = res['data']['description'];
         // obj['id'] = res['data']['id'];
         this.LKGovernorateId = obj['LKGovernorateId'] = res['data']['LKGovernorateId'];
         this.LKCityId = obj['LKCityId'] = res['data']['LKCityId'];
@@ -172,6 +174,7 @@ export class EditContactComponent implements AfterViewInit, OnInit {
         if (key == 'name' ||
           key == 'number' ||
           key == 'address' ||
+          key == 'description' ||
           key == 'LKGovernorateId' ||
           key == 'LKCityId' ||
           key == 'LKAreaId' ||

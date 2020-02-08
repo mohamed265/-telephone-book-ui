@@ -83,9 +83,9 @@ export class EditTagComponent implements OnInit {
     let obj = this.editForm.value;
     obj.id = this.tagId;
 
-    var sel = document.getElementById('LKTagId');
-    var options = sel['options'];
-    obj.LKTagId = sel['selectedIndex'] != -1 ? options[sel['selectedIndex']].value : null;
+    let sel = document.getElementById('LKTagId');
+    let options = sel['options'];
+    obj.LKTagId = sel['selectedIndex'] != -1 ? (options[sel['selectedIndex']].value == -1 ? null : options[sel['selectedIndex']].value) : null;
     debugger;
     this.apiService.updateTag(obj)
       .pipe(first())
