@@ -9,7 +9,11 @@
 
     <div class="form-group">
       <label for="arValue">Number:</label>
-      <input type="text" formControlName="number" placeholder="number" name="number" class="form-control" id="number">
+      <input type="text" formControlName="number" placeholder="number" name="number" class="form-control">
+      <span style="float: right;">
+        <span (click)="addNumber('')" class="close" style="margin-left: 30px">+</span>
+      </span>
+      <span id="moreNumbers"></span> 
     </div>
 
     <div class="form-group">

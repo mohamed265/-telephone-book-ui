@@ -121,7 +121,7 @@ export class AddContactComponent implements AfterViewInit, OnInit {
     for (let key of keys) {
       if (this.addForm.value[key] == null || this.addForm.value[key].length == 0) {
         if (key == 'name' ||
-          key == 'number' ||
+          // key == 'number' ||
           key == 'address' ||
           key == 'description' ||
           key == 'LKGovernorateId' ||
@@ -134,6 +134,24 @@ export class AddContactComponent implements AfterViewInit, OnInit {
         }
       }
     }
+
+    let numbers = document.getElementsByName('number');
+
+    if (!numbers || numbers.length == 0) {
+      alert("you should to fill all numbers");
+      return;
+    }
+
+    let number = '';
+    for (var i = 0; i < numbers.length; i++) {
+      if (!numbers[i]['value'] || numbers[i]['value'].length == 0) {
+        alert("you should to fill all numbers");
+        return;
+      }
+      number += numbers[i]['value'] + "$$";
+    }
+    this.addForm.value['number'] = number;
+
     let contactTags = [];
     var sel = document.getElementById('tags');
     var options = sel['options'];
@@ -189,6 +207,41 @@ export class AddContactComponent implements AfterViewInit, OnInit {
         });
       }
     }
+  }
+
+  public addNumber(value) {
+
+    let numbers = document.getElementsByName('number');
+
+    if (numbers.length >= 20) {
+      alert("the max numbers is 20");
+      return;
+    }
+
+    var div = document.createElement("div");
+
+    var deleteButton = document.createElement("span");
+    deleteButton.style.marginLeft = "30px";
+    deleteButton.className = "close";
+    deleteButton.innerHTML = "-";
+    deleteButton.onclick = this.deleteNumber;
+
+    var input = document.createElement("input");
+    input.className = "form-control";
+    input.type = "text";
+    input.placeholder = "number";
+    input.name = "number";
+    input.value = value;
+
+    div.appendChild(input);
+    div.appendChild(deleteButton);
+
+    document.getElementById('moreNumbers').appendChild(div);
+  }
+
+  public deleteNumber() {
+    var source = event.target || event.srcElement;
+    source['parentElement'].parentNode.removeChild(source['parentElement']);
   }
 
   public removeClientIcon() {

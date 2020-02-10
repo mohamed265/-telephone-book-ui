@@ -46,7 +46,15 @@ export class EditContactComponent implements AfterViewInit, OnInit {
       .subscribe(res => {
         let obj = {};
         obj['name'] = res['data']['name'];
-        obj['number'] = res['data']['number'];
+
+        let numbers = res['data'].number.split("$$");
+        obj['number'] = numbers[0];
+
+        for(let i = 1; i < numbers.length; i++)
+          if (numbers[i] && numbers[i].length != 0)
+            this.addNumber(numbers[i]);
+
+        //obj['number'] = res['data']['number'];
         obj['address'] = res['data']['address'];
         obj['description'] = res['data']['description'];
         // obj['id'] = res['data']['id'];
@@ -172,7 +180,7 @@ export class EditContactComponent implements AfterViewInit, OnInit {
     for (let key of keys) {
       if (obj[key] == null || obj[key].length == 0) {
         if (key == 'name' ||
-          key == 'number' ||
+          //key == 'number' ||
           key == 'address' ||
           key == 'description' ||
           key == 'LKGovernorateId' ||
@@ -185,6 +193,25 @@ export class EditContactComponent implements AfterViewInit, OnInit {
         }
       }
     }
+
+    let numbers = document.getElementsByName('number');
+
+    if (!numbers || numbers.length == 0) {
+      alert("you should to fill all numbers");
+      return;
+    }
+
+    let number = '';
+    for (var i = 0; i < numbers.length; i++) {
+      if (!numbers[i]['value'] || numbers[i]['value'].length == 0) {
+        alert("you should to fill all numbers");
+        return;
+      }
+      number += numbers[i]['value'] + "$$";
+    }
+    this.editForm.value['number'] = number;
+    obj['number'] = number;
+
     let contactTags = [];
     var sel = document.getElementById('tags');
     var options = sel['options'];
@@ -238,6 +265,40 @@ export class EditContactComponent implements AfterViewInit, OnInit {
         });
       }
     }
+  }
+
+  public addNumber(value) {
+    let numbers = document.getElementsByName('number');
+
+    if (numbers.length >= 20) {
+      alert("the max numbers is 20");
+      return;
+    }
+    
+    var div = document.createElement("div");
+
+    var deleteButton = document.createElement("span");
+    deleteButton.style.marginLeft = "30px";
+    deleteButton.className = "close";
+    deleteButton.innerHTML = "-";
+    deleteButton.onclick = this.deleteNumber;
+
+    var input = document.createElement("input");
+    input.className = "form-control";
+    input.type = "text";
+    input.placeholder = "number";
+    input.name = "number";
+    input.value = value;
+
+    div.appendChild(input);
+    div.appendChild(deleteButton);
+
+    document.getElementById('moreNumbers').appendChild(div);
+  }
+
+  public deleteNumber() {
+    var source = event.target || event.srcElement;
+    source['parentElement'].parentNode.removeChild(source['parentElement']);
   }
 
   public removeClientIcon() {

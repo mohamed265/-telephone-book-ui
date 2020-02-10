@@ -21,6 +21,9 @@ export class ListContactComponent implements OnInit {
     this.apiService.getContacts()
       .subscribe(response => {
         this.contacts = response['data'];
+        for (let i = 0; i < this.contacts.length; i++) {
+          this.contacts[i].number = this.contacts[i].number.split("$$", 1);
+        }
       });
   }
 
