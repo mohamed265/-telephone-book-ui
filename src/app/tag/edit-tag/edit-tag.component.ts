@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, ViewChild } from '@angular/core';
 import { Router } from "@angular/router";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { first } from "rxjs/operators";
@@ -31,7 +31,9 @@ export class EditTagComponent implements OnInit {
       description: [''],
       arValue: ['', Validators.required],
       enValue: ['', Validators.required],
-      LKTagId: ['', Validators.required]
+      LKTagId: ['', Validators.required],
+      sponsoredBy: ['', Validators.required],
+      image: ['', Validators.required],
     });
 
     this.apiService.getTagById(this.tagId)
@@ -43,36 +45,45 @@ export class EditTagComponent implements OnInit {
         obj['enValue'] = en && en.length == 1 ? en[0].value : "";
         obj['name'] = res['data']['name'];
         obj['description'] = res['data']['description'];
+        obj['sponsoredBy'] = res['data']['sponsoredBy'];
+        obj['image'] = res['data']['image'];
+        if(obj['image']){
+          this.editForm.value.image = this.clientIcon = obj['image'];
+          this.clientIconUploader.nativeElement.style.width = "75%"
+        }
         obj['id'] = res['data']['id'];
         this.LKTagId = obj['LKTagId'] = res['data']['LKTagId'];
         this.editForm.setValue(obj);
+        
+        this.apiService.getTags()
+          .subscribe(response => {
+            var tags = response['data'];
+            debugger;
+            tags.forEach(tag => {
+              var sel = document.getElementById('LKTagId');
+              // create new option element
+              var opt = document.createElement('option');
+
+              // create text node to add to option element (opt)
+              opt.appendChild(document.createTextNode(tag.name));
+
+              // set value property of opt
+              opt.value = tag.id;
+
+              if (this.LKTagId && tag.id == this.LKTagId) {
+                opt.selected = true;
+              }
+
+              // add opt to end of select box (sel)
+              if (tag.id != this.tagId)
+                sel.appendChild(opt);
+
+            });
+          });
+
       });
 
-    this.apiService.getTags()
-      .subscribe(response => {
-        var tags = response['data'];
-        debugger;
-        tags.forEach(tag => {
-          var sel = document.getElementById('LKTagId');
-          // create new option element
-          var opt = document.createElement('option');
 
-          // create text node to add to option element (opt)
-          opt.appendChild(document.createTextNode(tag.name));
-
-          // set value property of opt
-          opt.value = tag.id;
-
-          if (this.LKTagId && tag.id == this.LKTagId) {
-            opt.selected = true;
-          }
-
-          // add opt to end of select box (sel)
-          if (tag.id != this.tagId)
-            sel.appendChild(opt);
-
-        });
-      });
   }
 
   back() {
@@ -103,5 +114,47 @@ export class EditTagComponent implements OnInit {
           alert("error");
           console.log(error);
         });
+  }
+
+  @ViewChild('clientIconUploader', { static: true }) clientIconUploader;
+
+  clientIcon;
+  clientIconInvalidText;
+
+  public clientIconChangeEvent(fileInput) {
+    let self = this;
+
+    this.clientIconInvalidText = false;
+
+    if (fileInput.target.files && fileInput.target.files[0]) {
+
+      let file = fileInput.target.files[0];
+
+      if (file.size > (100000 / 2)) {
+        this.clientIconInvalidText = true;
+      } else {
+        this.getBase64(file).then(function (data) {
+          self.editForm.value.image = self.clientIcon = data;
+          self.clientIconUploader.nativeElement.style.width = "75%"
+        });
+      }
+    }
+  }
+
+  public removeClientIcon() {
+    this.clientIconInvalidText = false;
+    this.clientIcon = "";
+    this.editForm.value.image = "";
+    this.clientIconUploader.nativeElement.value = null;
+    this.clientIconUploader.nativeElement.style.width = "95%"
+  }
+
+  public getBase64(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = error => reject(error);
+    });
   }
 }

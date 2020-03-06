@@ -202,7 +202,7 @@ export class AddContactComponent implements AfterViewInit, OnInit {
 
       let file = fileInput.target.files[0];
 
-      if (file.size > (100000 / 1.32)) {
+      if (file.size > (100000 / 2)) {
         this.clientIconInvalidText = true;
       } else {
         this.getBase64(file).then(function (data) {
