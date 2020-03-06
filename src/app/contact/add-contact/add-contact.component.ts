@@ -27,7 +27,11 @@ export class AddContactComponent implements AfterViewInit, OnInit {
       type: ['', Validators.required],
       image: ['', Validators.required],
       longitude: ['', Validators.required],
-      latitudes: ['', Validators.required]
+      latitudes: ['', Validators.required],
+      optin: ['', Validators.required],
+      optout: ['', Validators.required],
+      workingHours: ['', Validators.required],
+      fbPage: ['', Validators.required],
     });
 
     this.apiService.getGovernorates()

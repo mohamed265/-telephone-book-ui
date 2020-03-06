@@ -27,8 +27,6 @@
         id="description">
     </div>
 
-
-
     <div class="form-group">
       <label for="LKGovernorateId">Governorate:</label>
       <select formControlName="LKGovernorateId" name="LKGovernorateId" class="form-control" id="LKGovernorateId"  required>
@@ -82,6 +80,26 @@
     <div class="form-group">
       <label for="map">Location :</label>
       <div #mapContainer id="map"></div>
+    </div>
+
+    <div class="form-group">
+      <label for="optin">Opt In:</label>
+      <input type="date" formControlName="optin" placeholder="optin" name="optin" class="form-control" id="optin">
+    </div>
+    
+    <div class="form-group">
+      <label for="optout">Opt Out:</label>
+      <input type="date" formControlName="optout" placeholder="optout" name="optout" class="form-control" id="optout">
+    </div>
+
+    <div class="form-group">
+      <label for="workingHours">Working Hours:</label>
+      <input type="text" formControlName="workingHours" placeholder="workingHours" name="workingHours" class="form-control" id="workingHours">
+    </div>
+
+    <div class="form-group">
+      <label for="fbPage">FB Page:</label>
+      <input type="text" formControlName="fbPage" placeholder="fbPage" name="fbPage" class="form-control" id="fbPage">
     </div>
 
     <button class="btn btn-success">Add</button>

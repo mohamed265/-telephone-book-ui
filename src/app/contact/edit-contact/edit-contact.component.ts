@@ -39,7 +39,11 @@ export class EditContactComponent implements AfterViewInit, OnInit {
       type: ['', Validators.required],
       image: ['', Validators.required],
       longitude: ['', Validators.required],
-      latitudes: ['', Validators.required]
+      latitudes: ['', Validators.required],
+      optin: ['', Validators.required],
+      optout: ['', Validators.required],
+      workingHours: ['', Validators.required],
+      fbPage: ['', Validators.required],
     });
 
     this.apiService.getContactById(this.contactId)
@@ -57,6 +61,10 @@ export class EditContactComponent implements AfterViewInit, OnInit {
         //obj['number'] = res['data']['number'];
         obj['address'] = res['data']['address'];
         obj['description'] = res['data']['description'];
+        obj['optin'] = res['data']['optin'];
+        obj['optout'] = res['data']['optout'];
+        obj['workingHours'] = res['data']['workingHours'];
+        obj['fbPage'] = res['data']['fbPage'];
         // obj['id'] = res['data']['id'];
         this.LKGovernorateId = obj['LKGovernorateId'] = res['data']['LKGovernorateId'];
         this.LKCityId = obj['LKCityId'] = res['data']['LKCityId'];
@@ -119,7 +127,6 @@ export class EditContactComponent implements AfterViewInit, OnInit {
 
         });
       });
-
 
     this.apiService.getGovernorates()
       .subscribe(response => {
@@ -239,8 +246,6 @@ export class EditContactComponent implements AfterViewInit, OnInit {
           console.log(error);
         });
   }
-
-
 
   @ViewChild('clientIconUploader', { static: true }) clientIconUploader;
 
