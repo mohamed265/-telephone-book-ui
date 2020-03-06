@@ -1,5 +1,9 @@
 <div class="col-md-6 lang-container">
   <h2 style="margin: auto"> Contact </h2>
+  <div class="form-group">
+    <label for="optout">Opt Out:</label>
+    <input type="date" #onChangqe (change)='onChange(onChangqe.value)' class="form-control" id="optout">
+  </div>
   <table class="table table-striped">
     <thead>
       <tr>

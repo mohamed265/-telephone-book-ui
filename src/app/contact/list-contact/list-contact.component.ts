@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { Router } from "@angular/router";
-import { ApiService } from "../../service/api.service";
+import { ApiService } from "../../service/api.service"; 
 
 @Component({
   selector: 'app-list-contact',
@@ -10,6 +10,7 @@ import { ApiService } from "../../service/api.service";
 export class ListContactComponent implements OnInit {
 
   contacts: any[];
+  allContacts: any[];
 
   constructor(private router: Router, private apiService: ApiService) { }
 
@@ -20,9 +21,9 @@ export class ListContactComponent implements OnInit {
     }
     this.apiService.getContacts()
       .subscribe(response => {
-        this.contacts = response['data'];
+        this.allContacts = this.contacts = response['data'];
         for (let i = 0; i < this.contacts.length; i++) {
-          this.contacts[i].number = this.contacts[i].number.split("$$", 1);
+          this.contacts[i].number = this.contacts[i].number.split("$$", 1)[0];
         }
       });
   }
@@ -44,6 +45,20 @@ export class ListContactComponent implements OnInit {
   addContact(): void {
     this.router.navigate(['add-contact']);
   };
+
+  onChange(value: string) {
+    console.log("the value is " + value);
+    if (value == '') {
+      this.contacts = this.allContacts;
+    } else {
+      this.contacts = [];
+      for (let i = 0, j = 0; i < this.allContacts.length; i++) {
+        if (this.allContacts[i].optout == value) {
+          this.contacts.push(this.allContacts[i]);
+        }
+      }
+    }
+  }
 
   home(): void {
     this.router.navigate(['home']);
