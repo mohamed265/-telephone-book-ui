@@ -31,7 +31,8 @@
 
     <div class="form-group">
       <label for="LKGovernorateId">Governorate:</label>
-      <select formControlName="LKGovernorateId" name="LKGovernorateId" class="form-control" id="LKGovernorateId"
+      <select #governorateSelect (change)='onGovernorateSelected(governorateSelect.value)'
+        formControlName="LKGovernorateId" name="LKGovernorateId" class="form-control" id="LKGovernorateId"
         required>
          <option></option>
       </select>
@@ -39,13 +40,15 @@
 
     <div class="form-group">
       <label for="LKCityId">City:</label>
-      <select formControlName="LKCityId" name="LKCityId" class="form-control" id="LKCityId" required>
+      <select #citySelect (change)='onCitySelected(citySelect.value)'
+      formControlName="LKCityId" name="LKCityId" class="form-control" id="LKCityId" required>
          <option></option>
       </select>
     </div>
     <div class="form-group">
       <label for="LKAreaId">Area:</label>
-      <select formControlName="LKAreaId" name="LKAreaId" class="form-control" id="LKAreaId" required>
+      <select #areaSelect (change)='onAreaSelected(areaSelect.value)'
+       formControlName="LKAreaId" name="LKAreaId" class="form-control" id="LKAreaId" required>
          <option></option>
       </select>
     </div>

@@ -11,6 +11,9 @@ import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from
 })
 export class AddContactComponent implements AfterViewInit, OnInit {
 
+  cities;
+  areas;
+
   constructor(private formBuilder: FormBuilder, private router: Router, private apiService: ApiService) { }
 
   addForm: FormGroup;
@@ -56,42 +59,12 @@ export class AddContactComponent implements AfterViewInit, OnInit {
 
     this.apiService.getCitys()
       .subscribe(response => {
-        var governorates = response['data'];
-        governorates.forEach(governorate => {
-          var sel = document.getElementById('LKCityId');
-          // create new option element
-          var opt = document.createElement('option');
-
-          // create text node to add to option element (opt)
-          opt.appendChild(document.createTextNode(governorate.name));
-
-          // set value property of opt
-          opt.value = governorate.id;
-
-          // add opt to end of select box (sel)
-          sel.appendChild(opt);
-
-        });
+        this.cities = response['data'];
       });
 
     this.apiService.getAreas()
       .subscribe(response => {
-        var governorates = response['data'];
-        governorates.forEach(governorate => {
-          var sel = document.getElementById('LKAreaId');
-          // create new option element
-          var opt = document.createElement('option');
-
-          // create text node to add to option element (opt)
-          opt.appendChild(document.createTextNode(governorate.name));
-
-          // set value property of opt
-          opt.value = governorate.id;
-
-          // add opt to end of select box (sel)
-          sel.appendChild(opt);
-
-        });
+        this.areas = response['data'];
       });
 
     this.apiService.getTags()
@@ -300,4 +273,59 @@ export class AddContactComponent implements AfterViewInit, OnInit {
     });
   }
 
+  onGovernorateSelected(value: string) {
+    console.log("the selected value is " + value);
+    this.removeOptions(document.getElementById('LKCityId'));
+    this.removeOptions(document.getElementById('LKAreaId'));
+    this.addForm.value['LKCityId'] = this.addForm.value['LKAreaId'] = '';
+    this.cities.forEach(city => {
+      if (city.LKGovernorateId == value) {
+        var sel = document.getElementById('LKCityId');
+        // create new option element
+        var opt = document.createElement('option');
+
+        // create text node to add to option element (opt)
+        opt.appendChild(document.createTextNode(city.name));
+
+        // set value property of opt
+        opt.value = city.id;
+
+        // add opt to end of select box (sel)
+        sel.appendChild(opt);
+      }
+    });
+  }
+
+  onCitySelected(value: string) {
+    console.log("the selected value is " + value);
+    this.removeOptions(document.getElementById('LKAreaId'));
+    this.addForm.value['LKAreaId'] = '';
+    this.areas.forEach(area => {
+      if (area.LKCityId == value) {
+        var sel = document.getElementById('LKAreaId');
+        // create new option element
+        var opt = document.createElement('option');
+
+        // create text node to add to option element (opt)
+        opt.appendChild(document.createTextNode(area.name));
+
+        // set value property of opt
+        opt.value = area.id;
+
+        // add opt to end of select box (sel)
+        sel.appendChild(opt);
+      }
+    });
+  }
+
+  onAreaSelected(value: string) {
+    console.log("the selected value is " + value);
+  }
+
+  removeOptions(selectElement) {
+    var i, L = selectElement.options.length - 1;
+    for (i = L; i > 0; i--) {
+      selectElement.remove(i);
+    }
+  }
 }

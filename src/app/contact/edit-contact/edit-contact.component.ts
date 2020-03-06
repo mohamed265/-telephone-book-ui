@@ -11,6 +11,9 @@ import { ApiService } from "../../service/api.service";
 })
 export class EditContactComponent implements AfterViewInit, OnInit {
 
+  
+  cities;
+  areas;
   contact: any;
   contactId: any;
   LKGovernorateId: any;
@@ -84,8 +87,8 @@ export class EditContactComponent implements AfterViewInit, OnInit {
 
     this.apiService.getCitys()
       .subscribe(response => {
-        var citys = response['data'];
-        citys.forEach(city => {
+        this.cities = response['data'];
+        this.cities.forEach(city => {
           var sel = document.getElementById('LKCityId');
           // create new option element
           var opt = document.createElement('option');
@@ -106,8 +109,8 @@ export class EditContactComponent implements AfterViewInit, OnInit {
 
     this.apiService.getAreas()
       .subscribe(response => {
-        var areas = response['data'];
-        areas.forEach(area => {
+        this.areas = response['data'];
+        this.areas.forEach(area => {
           var sel = document.getElementById('LKAreaId');
           // create new option element
           var opt = document.createElement('option');
@@ -356,5 +359,61 @@ export class EditContactComponent implements AfterViewInit, OnInit {
       self.editForm.value.latitudes = evt.latLng.lat();
       // document.getElementById('current').innerHTML = '<p>Marker dropped: Current Lat: ' + evt.latLng.lat().toFixed(3) + ' Current Lng: ' + evt.latLng.lng().toFixed(3) + '</p>';
     });
+  }
+
+  onGovernorateSelected(value: string) {
+    console.log("the selected value is " + value);
+    this.removeOptions(document.getElementById('LKCityId'));
+    this.removeOptions(document.getElementById('LKAreaId'));
+    this.editForm.value['LKCityId'] = this.editForm.value['LKAreaId'] = '';
+    this.cities.forEach(city => {
+      if (city.LKGovernorateId == value) {
+        var sel = document.getElementById('LKCityId');
+        // create new option element
+        var opt = document.createElement('option');
+
+        // create text node to add to option element (opt)
+        opt.appendChild(document.createTextNode(city.name));
+
+        // set value property of opt
+        opt.value = city.id;
+
+        // add opt to end of select box (sel)
+        sel.appendChild(opt);
+      }
+    });
+  }
+
+  onCitySelected(value: string) {
+    console.log("the selected value is " + value);
+    this.removeOptions(document.getElementById('LKAreaId'));
+    this.editForm.value['LKAreaId'] = '';
+    this.areas.forEach(area => {
+      if (area.LKCityId == value) {
+        var sel = document.getElementById('LKAreaId');
+        // create new option element
+        var opt = document.createElement('option');
+
+        // create text node to add to option element (opt)
+        opt.appendChild(document.createTextNode(area.name));
+
+        // set value property of opt
+        opt.value = area.id;
+
+        // add opt to end of select box (sel)
+        sel.appendChild(opt);
+      }
+    });
+  }
+
+  onAreaSelected(value: string) {
+    console.log("the selected value is " + value);
+  }
+
+  removeOptions(selectElement) {
+    var i, L = selectElement.options.length - 1;
+    for (i = L; i > 0; i--) {
+      selectElement.remove(i);
+    }
   }
 }
