@@ -27,6 +27,7 @@ export class EditTagComponent implements OnInit {
     }
 
     this.editForm = this.formBuilder.group({
+      id: ['', Validators.required],
       name: ['', Validators.required],
       description: [''],
       arValue: ['', Validators.required],
@@ -97,7 +98,8 @@ export class EditTagComponent implements OnInit {
     let sel = document.getElementById('LKTagId');
     let options = sel['options'];
     obj.LKTagId = sel['selectedIndex'] != -1 ? (options[sel['selectedIndex']].value == -1 ? null : options[sel['selectedIndex']].value) : null;
-    debugger;
+    if (obj.LKTagId == 'No Parent Tag')
+      obj.LKTagId = null;
     this.apiService.updateTag(obj)
       .pipe(first())
       .subscribe(

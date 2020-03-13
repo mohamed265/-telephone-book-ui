@@ -52,6 +52,8 @@ export class AddTagComponent implements OnInit {
     debugger;
     if (!this.addForm.value.LKTagId)
       this.addForm.value.LKTagId = undefined;
+    if (this.addForm.value.LKTagId == 'No Parent Tag')
+      this.addForm.value.LKTagId = undefined;
     this.apiService.createTag(this.addForm.value)
       .subscribe(data => {
         debugger;
