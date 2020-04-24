@@ -2,7 +2,11 @@
   <h2 style="margin: auto"> Contact </h2>
   <div class="form-group">
     <label for="optout">Opt Out:</label>
-    <input type="date" #onChangqe (change)='onChange(onChangqe.value)' class="form-control" id="optout">
+    <input type="date" #onOptOutChangeId (change)='onOptOutChange(onOptOutChangeId.value)' class="form-control" id="optout">
+  </div>
+  <div class="form-group">
+    <label for="name">Name:</label>
+    <input type="text" #onNameChangeId (change)='onNameChange(onNameChangeId.value)' class="form-control" id="name">
   </div>
   <table class="table table-striped">
     <thead>
