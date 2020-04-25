@@ -13,6 +13,8 @@ export class AddContactComponent implements AfterViewInit, OnInit {
 
   cities;
   areas;
+  longitude;
+  latitudes;
 
   constructor(private formBuilder: FormBuilder, private router: Router, private apiService: ApiService) { }
 
@@ -111,6 +113,9 @@ export class AddContactComponent implements AfterViewInit, OnInit {
         }
       }
     }
+
+    this.addForm.value.longitude = this.longitude;
+    this.addForm.value.latitudes = this.latitudes;
 
     let numbers = document.getElementsByName('number');
 
@@ -267,8 +272,8 @@ export class AddContactComponent implements AfterViewInit, OnInit {
 
     let self = this;
     google.maps.event.addListener(this.marker, 'dragend', function (evt) {
-      self.addForm.value.longitude = evt.latLng.lng();
-      self.addForm.value.latitudes = evt.latLng.lat();
+      self.longitude = evt.latLng.lng();
+      self.latitudes = evt.latLng.lat();
       // document.getElementById('current').innerHTML = '<p>Marker dropped: Current Lat: ' + evt.latLng.lat().toFixed(3) + ' Current Lng: ' + evt.latLng.lng().toFixed(3) + '</p>';
     });
   }
