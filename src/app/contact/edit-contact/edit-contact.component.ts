@@ -24,6 +24,9 @@ export class EditContactComponent implements AfterViewInit, OnInit {
   constructor(private formBuilder: FormBuilder, private router: Router, private apiService: ApiService) { }
 
   ngOnInit() {
+    
+    this.mapLoader()
+    
     this.contactId = window.localStorage.getItem("editContactId");
 
     if (!this.contactId) {
@@ -81,6 +84,12 @@ export class EditContactComponent implements AfterViewInit, OnInit {
         obj['latitudes'] = "";
         if (res['data']['latitudes'])
           this.lat = obj['latitudes'] = res['data']['latitudes'];
+
+        if(this.lat && this.lng) {
+          var latlng = new google.maps.LatLng(this.lat, this.lng);
+          this.marker.setPosition(latlng);
+          this.map.setCenter(latlng);
+        }
         console.log(obj);
         this.editForm.setValue(obj);
       });
@@ -331,21 +340,27 @@ export class EditContactComponent implements AfterViewInit, OnInit {
   @ViewChild('mapContainer', { static: false }) gmap: ElementRef;
   map: google.maps.Map;
 
-  coordinates = new google.maps.LatLng(this.lat, this.lng);
-
-  mapOptions: google.maps.MapOptions = {
-    center: this.coordinates,
-    zoom: 8
-  };
-
-  marker = new google.maps.Marker({
-    position: this.coordinates,
-    map: this.map,
-    draggable: true
-  });
+  coordinates
+  mapOptions
+  marker
 
   ngAfterViewInit() {
     this.mapInitializer();
+  }
+
+  mapLoader() {
+    this.coordinates = new google.maps.LatLng(this.lat, this.lng);
+
+    this.mapOptions = google.maps['MapOptions'] = {
+      center: this.coordinates,
+      zoom: 8
+    };
+
+    this.marker = new google.maps.Marker({
+        position: this.coordinates,
+        map: this.map,
+        draggable: true
+      });
   }
 
   mapInitializer() {
